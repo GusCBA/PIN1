@@ -21,12 +21,12 @@ pipeline {
     }
   
   
-    stage('Run tests - THE') {
+    stage('Runing tests - THE') {
       steps {
         sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry npm test"
       }
     }
-   stage('Deploy Image - BEST!!!') {
+   stage('Deploy Image - BEST !!!') {
       steps{
         sh '''
         #docker tag testapp 127.0.0.1:5000/grupo-4/testapp
