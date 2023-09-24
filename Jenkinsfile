@@ -9,7 +9,7 @@ pipeline {
     ARTIFACT_ID = "elbuo8/webapp:${env.BUILD_NUMBER}"
   }
    stages {
-   stage('Building image') {
+   stage('Building image - GRUPO 4') {
       steps{
           sh '''
           #cd webapp
@@ -21,12 +21,12 @@ pipeline {
     }
   
   
-    stage('Run tests') {
+    stage('Run tests - THE') {
       steps {
         sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry npm test"
       }
     }
-   stage('Deploy Image') {
+   stage('Deploy Image - BEST!!!') {
       steps{
         sh '''
         #docker tag testapp 127.0.0.1:5000/grupo-4/testapp
