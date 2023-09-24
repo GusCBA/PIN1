@@ -23,7 +23,7 @@ pipeline {
   
     stage('Run tests') {
       steps {
-        sh "docker run testapp npm test"
+        sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry npm test"
       }
     }
    stage('Deploy Image') {
