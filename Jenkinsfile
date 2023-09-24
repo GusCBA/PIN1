@@ -22,7 +22,7 @@ pipeline {
   
     stage('Run tests') {
       steps {
-        sh "docker run grupo-4:testapp_nexus npm test"
+        sh "docker run 127.0.0.1:8082/grupo-4:testapp_nexus npm test"
       }
     }
    stage('Deploy Image') {
