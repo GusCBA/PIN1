@@ -13,7 +13,8 @@ pipeline {
       steps{
           sh '''
           #cd webapp
-          docker build -t testapp .
+          #docker build -t testapp .
+          docker build -t 127.0.0.1:8082/grupo-4:testapp_nexus .
              '''  
         }
     }
@@ -27,8 +28,10 @@ pipeline {
    stage('Deploy Image') {
       steps{
         sh '''
-        docker tag testapp 127.0.0.1:8082/grupo-4:testapp_nexus
+        sh 'docker login -u docker -p docker 127.0.0.1:8082'
+        #docker tag testapp 127.0.0.1:8082/grupo-4:testapp_nexus
         docker push 127.0.0.1:8082/grupo-4:testapp_nexus
+        sh 'docker logout 127.0.0.1:8082'
         '''
         }
       }
