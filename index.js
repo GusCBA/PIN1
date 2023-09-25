@@ -4,17 +4,15 @@ const Router = require('koa-router');
 const app = new Koa();
 const router = new Router();
 const sum = require('./sum');
+const less = require('./less');
 
 router.get('/add/:a/:b', (ctx, next) => {
   const result = sum(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
   return ctx.body = { result };
 });
-router.get('/pepe/:a/:b', (ctx, next) => {
-  const result = (ctx.params.a)-(ctx.params.b);
+router.get('/less/:a/:b', (ctx, next) => {
+  const result = less(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
   return ctx.body = { result };
-});
-router.get('/hola', (ctx, next) => {
-  return 'hola'
 });
 app
   .use(router.routes())
