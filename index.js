@@ -11,8 +11,8 @@ router.get('/add/:a/:b', (ctx, next) => {
   return ctx.body = { result };
 });
 router.get('/less/:a/:b', (ctx, next) => {
-  const result = less(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
-  return ctx.body = { result };
+  const result1 = less(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
+  return ctx.body = { result1 };
 });
 app
   .use(router.routes())
