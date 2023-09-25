@@ -12,15 +12,13 @@ pipeline {
    stage('Building image - GRUPO 4') {
       steps{
           sh '''
-          #cd webapp
-          #docker build -t testapp .
           docker build -t 127.0.0.1:5000/grupo-4:testapp_registry_1.3 .
-              '''  
+             '''  
         }
     }
   
   
-    stage('Runing tests - THE') {
+    stage('Run tests -    THE') {
       steps {
         sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry_1.3 npm test"
       }
@@ -32,10 +30,18 @@ pipeline {
         '''
         }
       }
+
+    stage('RUN Image TEST_REGISTRY') {
+          steps{
+            sh '''
+            docker rm -f testapp_registry
+            docker run -d --name testapp_registry -p 3000:3000 127.0.0.1:5000/grupo-4:testapp_registry_1.3
+            '''
+            }
+          }
     }
 }
 
 
     
   
-
