@@ -37,5 +37,12 @@ pipeline {
           sh "docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity=CRITICAL 127.0.0.1:5000/grupo-4:testapp_registry_1.3"
             }
         }
+    stage('Delete trivy CONTAINER') {
+      steps{
+        sh '''
+        #docker rm -f testapp_registry
+           '''
+        }
+      }    
     }
 }
