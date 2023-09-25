@@ -39,6 +39,7 @@ pipeline {
     stage('RUN Image TEST') {
           steps{
             sh '''
+            docker rm -f testapp_nexus_GRUPO-4
             docker run -d --name testapp_nexus_GRUPO-4 -p 3000:3000 127.0.0.1:8082/grupo-4:testapp_nexus
             '''
             }
