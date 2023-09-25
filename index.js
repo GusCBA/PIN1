@@ -9,7 +9,10 @@ router.get('/add/:a/:b', (ctx, next) => {
   const result = sum(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
   return ctx.body = { result };
 });
-
+router.get('/less/:a/:b', (ctx, next) => {
+  const result = (ctx.params.a)-(ctx.params.b);
+  return ctx.body = { result };
+});
 app
   .use(router.routes())
   .use(router.allowedMethods());
