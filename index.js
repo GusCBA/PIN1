@@ -11,10 +11,10 @@ router.get('/add/:a/:b', (ctx, next) => {
   const result = sum(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
   return ctx.body = { result };
 });
-// router1.get('/less/:a/:b', (ctx, next) => {
-//   const result1 = less(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
-//   return ctx.body = { result1 };
-// });
+router.get('/less/:a/:b', (ctx, next) => {
+   const result1 = less(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
+   return ctx.body = { result1 };
+});
 app
   .use(router.routes())
   .use(router.allowedMethods());
