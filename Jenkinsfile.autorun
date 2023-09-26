@@ -37,6 +37,7 @@ pipeline {
           steps{
             sh '''
             docker rm -f testapp_nexus
+            docker rm -f testapp_registry
             docker run -d --name testapp_nexus -p 3000:3000 127.0.0.1:8082/grupo-4:testapp_nexus_1.2
             '''
             }

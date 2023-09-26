@@ -13,6 +13,7 @@ pipeline {
       steps{
           sh '''
           docker rm -f testapp_nexus
+          docker rm -f testapp_registry
           docker build -t 127.0.0.1:8082/grupo-4:testapp_nexus_1.1 .
              '''  
         }
