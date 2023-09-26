@@ -12,8 +12,7 @@ pipeline {
    stage('Building image - GRUPO 4') {
       steps{
           sh '''
-          #cd webapp
-          #docker build -t testapp .
+          docker rm -f testapp_registry
           docker build -t 127.0.0.1:5000/grupo-4:testapp_registry_1.3 .
               '''  
         }
@@ -34,8 +33,3 @@ pipeline {
       }
     }
 }
-
-
-    
-  
-
