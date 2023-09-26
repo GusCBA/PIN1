@@ -8,12 +8,12 @@ const sum = require('./sum');
 const less = require('./less');
 
 router.get('/add/:a/:b', (ctx, next) => {
-  const result_ADD = sum(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
-  return ctx.body = { result_ADD };
+  const RNEXUS_result_ADD = sum(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
+  return ctx.body = { NEXUS_result_ADD };
 });
 router.get('/less/:a/:b', (ctx, next) => {
-   const result_LESS = less(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
-   return ctx.body = { result_LESS };
+  const NEXUS_result_LESS = less(parseFloat(ctx.params.a), parseFloat(ctx.params.b));
+  return ctx.body = { NEXUS_result_LESS };
 });
 app
   .use(router.routes())
