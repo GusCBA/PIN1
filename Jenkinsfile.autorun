@@ -12,7 +12,7 @@ pipeline {
    stage('Building image - GRUPO 4') {
       steps{
           sh '''
-          docker build -t 127.0.0.1:5000/grupo-4:testapp_registry_1.3 .
+          docker build -t 127.0.0.1:5000/grupo-4:testapp_registry_1.4 .
              '''  
         }
     }
@@ -20,13 +20,13 @@ pipeline {
   
     stage('Run tests -    THE') {
       steps {
-        sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry_1.3 npm test"
+        sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry_1.4 npm test"
       }
     }
    stage('Deploy Image - BEST !!!') {
       steps{
         sh '''
-        docker push 127.0.0.1:5000/grupo-4:testapp_registry_1.3
+        docker push 127.0.0.1:5000/grupo-4:testapp_registry_1.4
         '''
         }
       }
@@ -35,7 +35,7 @@ pipeline {
           steps{
             sh '''
             docker rm -f testapp_registry
-            docker run -d --name testapp_registry -p 3000:3000 127.0.0.1:5000/grupo-4:testapp_registry_1.3
+            docker run -d --name testapp_registry -p 3000:3000 127.0.0.1:5000/grupo-4:testapp_registry_1.4
             '''
             }
           }

@@ -13,7 +13,7 @@ pipeline {
       steps{
           sh '''
           #cd webapp
-          docker build -t 127.0.0.1:5000/grupo-4:testapp_registry_1.3 .
+          docker build -t 127.0.0.1:5000/grupo-4:testapp_registry_1.5 .
              '''  
         }
     }
@@ -21,20 +21,20 @@ pipeline {
   
     stage('Run tests -    THE') {
       steps {
-        sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry_1.3 npm test"
+        sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry_1.5 npm test"
       }
     }
    stage('Deploy Image - BEST !!!') {
       steps{
         sh '''
         #docker tag testapp 127.0.0.1:5000/mguazzardo/testapp
-        docker push 127.0.0.1:5000/grupo-4:testapp_registry_1.3   
+        docker push 127.0.0.1:5000/grupo-4:testapp_registry_1.5   
         '''
         }
       }
    stage('Vulnerability Scan - Docker from REGISTRY') {
         steps {
-          sh "docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity=CRITICAL 127.0.0.1:5000/grupo-4:testapp_registry_1.3"
+          sh "docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity=CRITICAL 127.0.0.1:5000/grupo-4:testapp_registry_1.5"
             }
         }
     stage('Delete trivy CONTAINER') {
