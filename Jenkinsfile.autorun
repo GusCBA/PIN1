@@ -26,9 +26,11 @@ pipeline {
    stage('Deploy Image - BEST !!!') {
       steps{
         sh '''
-        docker login -u docker -p docker 127.0.0.1:8082
+        #docker login -u xxx -p xxx 127.0.0.1:8082
+        whoami
+        id
         docker push 127.0.0.1:8082/grupo-4:testapp_nexus_2.2
-        docker logout 127.0.0.1:8082
+        #docker logout 127.0.0.1:8082
         '''
         }
       }
