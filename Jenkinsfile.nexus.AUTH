@@ -28,7 +28,7 @@ pipeline {
    stage('Deploy Image - BEST !!!') {
       steps{
         sh '''
-        #docker login -u docker -p docker 127.0.0.1:8082
+        #docker login -u xxxx -p xxxx 127.0.0.1:8082
         docker login
         whoami
         id
