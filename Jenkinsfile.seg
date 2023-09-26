@@ -40,7 +40,7 @@ pipeline {
     stage('Delete trivy CONTAINER') {
       steps{
         sh '''
-        #docker rm -f testapp_registry
+        docker ps -a | awk '{ print $1,$2 }' | grep aquasec/trivy | awk '{print $1 }' | xargs -I {} docker rm {}
            '''
         }
       }    
