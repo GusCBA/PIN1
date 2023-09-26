@@ -29,6 +29,7 @@ pipeline {
       steps{
         sh '''
         #docker login -u docker -p docker 127.0.0.1:8082
+        docker login
         whoami
         id
         docker push 127.0.0.1:8082/grupo-4:testapp_nexus_5.1
