@@ -33,6 +33,14 @@ pipeline {
         '''
         }
       }
+    stage('Check image DEPLOY - API Nexus') {
+      steps{
+        sh '''
+        #curl -X GET 'gateway.docker.internal/service/rest/v1/components?repository=docker'
+        curl http://gateway.docker.internal:8081/service/rest/v1/components?repository=docker
+        '''
+        }
+      } 
    stage('Vulnerability Scan - Docker from NEXUS') {
         steps {
           sh "docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity=CRITICAL 127.0.0.1:8082/grupo-4:app_nexus_SEG"
