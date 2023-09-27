@@ -23,7 +23,7 @@ pipeline {
         sh "docker run grupo-4:app_nexus_AUTORUN npm test"
       }
     }
-   stage('Deploy Image - BEST !!!') {
+    stage('Deploy Image - BEST !!!') {
       steps{
         sh '''
         whoami
@@ -34,7 +34,14 @@ pipeline {
         '''
         }
       }
-  stage('Delete Local Images') {  
+    stage('Check image DEPLOY') {
+      steps{
+        sh '''
+        curl -X GET '127.0.0.1:8081/service/rest/v1/components?repository=docker'
+        '''
+        }
+      }  
+    stage('Delete Local Images') {  
           steps{
             sh '''
             docker rm -f testapp_registry
