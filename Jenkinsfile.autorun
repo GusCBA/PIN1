@@ -42,6 +42,7 @@ pipeline {
           steps{
             sh '''
             docker rm -f testapp_registry
+            docker rm -f testapp_nexus
             docker run -d --name testapp_registry -p 3000:3000 127.0.0.1:5000/grupo-4:app_registry_AUTORUN
             '''
             }
