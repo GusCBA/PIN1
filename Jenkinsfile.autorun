@@ -39,7 +39,7 @@ pipeline {
         '''
         }
       }       
-    stage('RUN Image APP_REGISTRY') {
+    stage('Delete Local Images') {
           steps{
             sh '''
             docker rm -f testapp_registry
@@ -47,6 +47,13 @@ pipeline {
             docker ps -a | awk '{ print $1,$2 }' | grep 127.0.0.1:5000/grupo-4:app_registry_AUTORUN | awk '{print $1 }' | xargs -I {} docker rm -f {}
             docker image rm -f grupo-4:app_registry_AUTORUN
             docker image rm -f 127.0.0.1:5000/grupo-4:app_registry_AUTORUN
+            
+            '''
+            }
+          }
+    stage('RUN Image APP_REGISTRY') {
+          steps{
+            sh '''
             docker run -d --name testapp_registry -p 3000:3000 127.0.0.1:5000/grupo-4:app_registry_AUTORUN
             '''
             }
