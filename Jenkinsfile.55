@@ -29,7 +29,7 @@ pipeline {
       steps {
         sh '''
         npm install mocha-junit-reporter --save-dev
-        ./node_modules/mocha/bin/mocha test/index.js --reporter mocha-junit-reporter --reporter-options mochaFile=./jenkins-test-results.xml
+        npm install MOCHA_FILE=./jenkins-test-results.xml ./node_modules/.bin/mocha tests/** --reporter mocha-junit-reporter
         '''
       }
     }
