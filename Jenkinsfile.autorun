@@ -55,14 +55,14 @@ pipeline {
       steps{
         sh '''
 
-        curl http://127.0.0.1:3000/add/200/59
+        curl http://gateway.docker.internal:3000/add/200/59
         '''
         }
       }       
     stage('Test APP - LESS') {
       steps{
         sh '''
-        curl http://127.0.0.1:3000/add/200/59
+        curl http://gateway.docker.internal:3000/add/200/59
         '''
         }
       }
