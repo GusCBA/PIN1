@@ -1,15 +1,27 @@
+########################################################
+###############   DOCKER-COMPOSE.YML  ##################
+########################################################
+#
+# -*- Parametros contenedores JENKINS / REGISTRY / NEXUS 
+# 
+# Version:
+#    v1.0 21-09-2023 - Gustavo Stierli - Version inicial.
+#    v1.1 23-09-2023 - Gustavo Stierli - Agregado de persistencia para NEXUS
+#    v1.1 25-09-2023 - Gustavo Stierli - Imagen propia jenkins + Docker IN Docker
+
 version: '3.8'
 services:
   jenkins:
-    image: mguazzardo/pipe-seg
-    #image: jenkins/jenkins:2.424-jdk11
+    #image: mguazzardo/pipe-seg
+    image: guscba/jenkins:1.5
     privileged: true
     user: root
     ports:
      - 8080:8080
-    container_name: jenkins-GRUPO4
+     - 50000:50000
+  container_name: jenkins-GRUPO4
     volumes:
-      #- /home/guscba/DevOps/PIN_1/jenkins:/var/jenkins_home
+      - /home/guscba/DevOps/PIN_1/jenkins:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
@@ -17,11 +29,13 @@ services:
 
   nexus:
     image: sonatype/nexus3:3.60.0
+    privileged: true
     ports:
       - 8081:8081
       - 8082:8082
     container_name: nexus-GusCBA
     volumes:
+      #- /nexus-data:/nexus-data
       - /home/guscba/DevOps/PIN_1/nexus:/nexus-data
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro
