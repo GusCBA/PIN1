@@ -1,3 +1,15 @@
+########################################################
+###############   DOCKER-COMPOSE.YML  ##################
+########################################################
+#
+# -*- Parametros contenedores JENKINS / REGISTRY / NEXUS 
+# 
+# Version:
+#    v1.0 21-09-2023 - Gustavo Stierli - Version inicial.
+#    v1.1 23-09-2023 - Gustavo Stierli - Agregado de persistencia para NEXUS
+#    v1.1 25-09-2023 - Gustavo Stierli - Imagen propia jenkins + Docker IN Docker
+
+
 version: '3.8'
 services:
   jenkins:
