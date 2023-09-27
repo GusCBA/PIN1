@@ -37,7 +37,8 @@ pipeline {
     stage('Check image DEPLOY') {
       steps{
         sh '''
-        curl -X GET 'gateway.docker.internal/service/rest/v1/components?repository=docker'
+        #curl -X GET 'gateway.docker.internal/service/rest/v1/components?repository=docker'
+        curl http://gateway.docker.internal:8081/service/rest/v1/components?repository=docker
         '''
         }
       }  
