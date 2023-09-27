@@ -25,6 +25,7 @@ pipeline {
         sh "docker run 127.0.0.1:8082/grupo-4:testapp_nexus_2.1 npm test"
       }
     }
+
     stage('Mocha Tests') {
       steps {
         sh '''
