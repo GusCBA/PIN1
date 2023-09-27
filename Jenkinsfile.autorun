@@ -46,7 +46,7 @@ pipeline {
             '''
             }
           }
-    stage('RUN Image APP_NEXUS') {
+    stage('RUN Image from NEXUS') {
           steps{
             sh '''
             docker rm -f testapp_nexus
