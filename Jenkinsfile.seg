@@ -12,7 +12,7 @@ pipeline {
    stage('Building image - GRUPO 4') {
       steps{
           sh '''
-          docker build -t 127.0.0.1:8082/grupo-4:testapp_nexus_SEG .
+          docker build -t 127.0.0.1:8082/grupo-4:app_nexus_SEG .
              '''  
         }
     }
@@ -20,7 +20,7 @@ pipeline {
   
     stage('Run tests -    THE') {
       steps {
-        sh "docker run 127.0.0.1:8082/grupo-4:testapp_nexus_SEG npm test"
+        sh "docker run 127.0.0.1:8082/grupo-4:app_nexus_SEG npm test"
       }
     }
    stage('Deploy Image - BEST !!!') {
@@ -29,14 +29,14 @@ pipeline {
         #docker login -u xxxx -p xxxx 127.0.0.1:8082
         whoami
         id
-        docker push 127.0.0.1:8082/grupo-4:testapp_nexus_SEG
+        docker push 127.0.0.1:8082/grupo-4:app_nexus_SEG
         #docker logout 127.0.0.1:8082
         '''
         }
       }
    stage('Vulnerability Scan - Docker from NEXUS') {
         steps {
-          sh "docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity=CRITICAL 127.0.0.1:8082/grupo-4:testapp_nexus_SEG"
+          sh "docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity=CRITICAL 127.0.0.1:8082/grupo-4:app_nexus_SEG"
             }
         }
     stage('Delete trivy CONTAINER') {

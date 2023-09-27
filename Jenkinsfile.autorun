@@ -55,7 +55,7 @@ pipeline {
       steps{
         sh '''
 
-        curl http://0.0.0.0:3000/add/200/59
+        curl http://127.0.0.1:3000/add/200/59
         '''
         }
       }       
