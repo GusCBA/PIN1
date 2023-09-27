@@ -40,18 +40,6 @@ pipeline {
         '''
         }
       }       
-    stage('Delete Local Images') {
-          steps{
-            sh '''
-            docker rm -f testapp_registry
-            docker rm -f testapp_nexus
-            docker ps -a | awk '{ print $1,$2 }' | grep 127.0.0.1:5000/grupo-4:app_registry_SEG | awk '{print $1 }' | xargs -I {} docker rm -f {}
-            docker image rm -f grupo-4:app_registry_SEG
-            docker image rm -f 127.0.0.1:5000/grupo-4:app_registry_SEG
-            
-            '''
-            }
-          }
     stage('Vulnerability Scan - from REGISTRY image') {
         steps {
           sh "docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image --severity=CRITICAL 127.0.0.1:5000/grupo-4:app_registry_SEG"
