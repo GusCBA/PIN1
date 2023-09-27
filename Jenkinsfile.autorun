@@ -62,7 +62,7 @@ pipeline {
     stage('Test APP - LESS') {
       steps{
         sh '''
-        curl http://gateway.docker.internal:3000/add/200/59
+        curl http://gateway.docker.internal:3000/less/200/59
         '''
         }
       }
