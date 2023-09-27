@@ -12,29 +12,40 @@ pipeline {
    stage('Building image - GRUPO 4') {
       steps{
           sh '''
-          docker build -t 127.0.0.1:8082/grupo-4:app_nexus_AUTORUN .
+          docker build -t grupo-4:app_nexus_AUTORUN .
              '''  
         }
     }
   
   
-    stage('MOCHA tests - THE') {
+    stage('MOCHA tests  -    THE') {
       steps {
-        sh "docker run 127.0.0.1:8082/grupo-4:app_nexus_AUTORUN npm test"
+        sh "docker run grupo-4:app_nexus_AUTORUN npm test"
       }
     }
    stage('Deploy Image - BEST !!!') {
       steps{
         sh '''
-        #docker login -u xxx -p xxx 127.0.0.1:8082
         whoami
         id
+        docker tag grupo-4:app_nexus_AUTORUN 127.0.0.1:8082/grupo-4:app_nexus_AUTORUN
         docker push 127.0.0.1:8082/grupo-4:app_nexus_AUTORUN
-        #docker logout 127.0.0.1:8082
+        
         '''
         }
       }
-
+  stage('Delete Local Images') {  
+          steps{
+            sh '''
+            docker rm -f testapp_registry
+            docker rm -f testapp_nexus
+            docker ps -a | awk '{ print $1,$2 }' | grep 127.0.0.1:8082/grupo-4:app_nexus_AUTORUN | awk '{print $1 }' | xargs -I {} docker rm -f {}
+            docker image rm -f grupo-4:app_nexus_AUTORUN
+            docker image rm -f 127.0.0.1:8082/grupo-4:app_nexus_AUTORUN
+            
+            '''
+            }
+          }
     stage('RUN Image APP_NEXUS') {
           steps{
             sh '''
