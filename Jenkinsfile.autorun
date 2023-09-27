@@ -18,7 +18,7 @@ pipeline {
     }
   
   
-    stage('Run tests -    THE') {
+    stage('Run MOCHA tests - THE') {
       steps {
         sh "docker run 127.0.0.1:8082/grupo-4:app_nexus_AUTORUN npm test"
       }
@@ -35,7 +35,7 @@ pipeline {
         }
       }
 
-    stage('RUN Image TEST_NEXUS') {
+    stage('RUN Image APP_NEXUS') {
           steps{
             sh '''
             docker rm -f testapp_nexus
