@@ -12,33 +12,55 @@ pipeline {
    stage('Building image - GRUPO 4') {
       steps{
           sh '''
-          docker build -t 127.0.0.1:5000/grupo-4:testapp_registry_1.4 .
+          docker build -t 127.0.0.1:5000/grupo-4:app_registry_AUTORUN .
              '''  
         }
     }
   
   
-    stage('Run tests -    THE') {
+    stage('MOCHA tests - THE') {
       steps {
-        sh "docker run 127.0.0.1:5000/grupo-4:testapp_registry_1.4 npm test"
+        sh "docker run 127.0.0.1:5000/grupo-4:app_registry_AUTORUN npm test"
       }
     }
    stage('Deploy Image - BEST !!!') {
       steps{
         sh '''
-        docker push 127.0.0.1:5000/grupo-4:testapp_registry_1.4
+        docker push 127.0.0.1:5000/grupo-4:app_registry_AUTORUN
         '''
         }
       }
 
-    stage('RUN Image TEST_REGISTRY') {
+    stage('RUN Image APP_REGISTRY') {
           steps{
             sh '''
             docker rm -f testapp_registry
-            docker run -d --name testapp_registry -p 3000:3000 127.0.0.1:5000/grupo-4:testapp_registry_1.4
+            docker run -d --name testapp_registry -p 3000:3000 127.0.0.1:5000/grupo-4:app_registry_AUTORUN
             '''
             }
           }
+    stage('List running contanners') {
+          steps{
+            sh '''
+            docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}"
+            '''
+            }
+          }
+    stage('Test APP - SUM') {
+      steps{
+        sh '''
+
+        curl http://gateway.docker.internal:3000/add/200/59
+        '''
+        }
+      }       
+    stage('Test APP - LESS') {
+      steps{
+        sh '''
+        curl http://gateway.docker.internal:3000/less/200/59
+        '''
+        }
+      }      
     }
 }
 
