@@ -47,21 +47,21 @@ pipeline {
     stage('List running contanners') {
           steps{
             sh '''
-            docker ps
+            docker ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}"
             '''
             }
           }
     stage('Test APP - SUM') {
       steps{
         sh '''
-        curl http://localhost:3000/add/200/59
+        curl http://127.0.0.1:3000/add/200/59
         '''
         }
       }       
     stage('Test APP - LESS') {
       steps{
         sh '''
-        curl http://localhost:3000/add/200/59
+        curl http://127.0.0.1:3000/add/200/59
         '''
         }
       }
