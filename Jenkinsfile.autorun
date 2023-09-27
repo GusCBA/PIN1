@@ -54,6 +54,8 @@ pipeline {
     stage('Test APP - SUM') {
       steps{
         sh '''
+        echo xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        echo Test APP - SUM
         curl http://127.0.0.1:3000/add/200/59
         '''
         }
@@ -61,6 +63,8 @@ pipeline {
     stage('Test APP - LESS') {
       steps{
         sh '''
+        echo xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        echo Test APP - LESS
         curl http://127.0.0.1:3000/add/200/59
         '''
         }
