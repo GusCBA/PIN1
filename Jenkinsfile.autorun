@@ -18,7 +18,7 @@ pipeline {
     }
   
   
-    stage('MOCHA tests -    THE') {
+    stage('MOCHA tests  -    THE') {
       steps {
         sh "docker run grupo-4:app_registry_AUTORUN npm test"
       }
