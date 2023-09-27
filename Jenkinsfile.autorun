@@ -30,7 +30,14 @@ pipeline {
         '''
         }
       }
-
+    stage('Check image DEPLOY') {
+      steps{
+        sh '''
+        curl http://gateway.docker.internal:5000/v2/_catalog
+        curl http://gateway.docker.internal:5000/v2/grupo-4/tags/list
+        '''
+        }
+      }       
     stage('RUN Image APP_REGISTRY') {
           steps{
             sh '''
