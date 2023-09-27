@@ -34,7 +34,7 @@ pipeline {
         '''
         }
       }
-    stage('Check image DEPLOY') {
+    stage('Check image DEPLOY - API Nexus') {
       steps{
         sh '''
         #curl -X GET 'gateway.docker.internal/service/rest/v1/components?repository=docker'
