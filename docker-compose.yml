@@ -1,14 +1,3 @@
-########################################################
-###############   DOCKER-COMPOSE.YML  ##################
-########################################################
-#
-# -*- Parametros contenedores JENKINS / REGISTRY / NEXUS 
-# 
-# Version:
-#    v1.0 21-09-2023 - Gustavo Stierli - Version inicial.
-#    v1.1 23-09-2023 - Gustavo Stierli - Agregado de persistencia para NEXUS
-#    v1.1 25-09-2023 - Gustavo Stierli - Imagen propia jenkins + Docker IN Docker
-
 version: '3.8'
 services:
   jenkins:
@@ -18,7 +7,9 @@ services:
     user: root
     ports:
      - 8080:8080
-     - 50000:50000
+       # - 50000:50000
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     container_name: jenkins-GRUPO4
     volumes:
       - /home/guscba/DevOps/PIN_1/jenkins:/var/jenkins_home
@@ -33,7 +24,7 @@ services:
     ports:
       - 8081:8081
       - 8082:8082
-    container_name: nexus-GusCBA
+    container_name: nexus-GRUPO4
     volumes:
       #- /nexus-data:/nexus-data
       - /home/guscba/DevOps/PIN_1/nexus:/nexus-data
